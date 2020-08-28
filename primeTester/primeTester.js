@@ -37,7 +37,6 @@ var primeSieve = function (start, end) {
  * saucy, check out the Sieve of Atkin.)
  */
 
-// var primeSieve = function (start, end) {
-};
+// console.log(primeSieve(1, 10))
 
 
