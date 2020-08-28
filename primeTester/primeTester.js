@@ -7,18 +7,28 @@
 var primeTester = function(n) {
   if (typeof n !== 'number' || n < 1 || n % 1 !== 0) {
     // n isn't a number or n is less than 1 or n is not an integer
-    var divisors = [];
+    return null;
+  }
+  // TODO: return true if n is prime, false otherwise
+  var divisors = [];
     for (var i = 2; i < n; i++) {
       if (n % i === 0) {
         divisors.push(i);
+        //console.log(divisors);
       }
     }
     if (divisors.length === 0) {
-      return false;
+      return true;
     }
     return false;
+};
+
+var primeSieve = function (start, end) {
+  var primes = [];
+  for (var i = start - 1; i < end + 1; i++) {
+    if (primeTester(i)) primes.push(i);
   }
-  // TODO: return true if n is prime, false otherwise
+  return primes;
 };
 
 /* Extra credit: Write a function that generates a list of all prime numbers
@@ -27,7 +37,7 @@ var primeTester = function(n) {
  * saucy, check out the Sieve of Atkin.)
  */
 
-var primeSieve = function (start, end) {
+// var primeSieve = function (start, end) {
 };
 
 
