@@ -7,25 +7,21 @@
 var primeTester = function(n) {
   if (typeof n !== 'number' || n < 1 || n % 1 !== 0) {
     // n isn't a number or n is less than 1 or n is not an integer
-    return null;
+    return false;
   }
   // TODO: return true if n is prime, false otherwise
   var divisors = [];
-    for (var i = 2; i < n; i++) {
+    for (var i = 2; i <= Math.sqrt(n); i++) {
       if (n % i === 0) {
-        divisors.push(i);
-        //console.log(divisors);
+        return false;
       }
     }
-    if (divisors.length === 0) {
-      return true;
-    }
-    return false;
+    return true;
 };
 
 var primeSieve = function (start, end) {
   var primes = [];
-  for (var i = start - 1; i < end + 1; i++) {
+  for (var i = start - 1; i < end; i++) {
     if (primeTester(i)) primes.push(i);
   }
   return primes;
@@ -37,6 +33,6 @@ var primeSieve = function (start, end) {
  * saucy, check out the Sieve of Atkin.)
  */
 
-// console.log(primeSieve(1, 10))
+console.log(primeSieve(1, 10))
 
 
