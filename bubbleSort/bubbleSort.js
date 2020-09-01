@@ -34,5 +34,12 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  // iterate through array
+  // if index < index +1
+      // move to next index
+  // if index > index +1
+      // swap index and index+1 and
+      // recur on array.slice(array.length-1)
 };
+
+bubbleSort([2, 1, 3]); // yields [1, 2, 3]
