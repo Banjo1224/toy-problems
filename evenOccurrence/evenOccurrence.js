@@ -38,7 +38,7 @@ var evenOccurrence = function(arr) {
   //return first key with even value
   for (var key in output) {
     if (output[key] % 2 === 0) {
-      return key;
+      return key.toString();
     }
   }
   //else return null

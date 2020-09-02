@@ -45,6 +45,7 @@ var characterFrequency = function(string) {
           holding[letter] = 1;
       } else holding[letter]++;
   }
+  Object.keys(holding).sort();
   for (var letter in holding) {
       var temp = [letter, holding[letter]];
       result.push(temp);

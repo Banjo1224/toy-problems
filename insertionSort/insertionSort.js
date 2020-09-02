@@ -37,16 +37,37 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], i: i});
+    transform.push({value: array[i], order: i});
   }
 
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
+  // iterate over array twice
+    // if current is smaller than next, move forward.
+
+  for (var item of array) {
+      for (var pointer = 0; pointer < array.length-1; pointer++) {
+          var index = array[pointer].value;
+          var next = array[pointer + 1].value;
+          if (index > next) {
+              array[pointer + 1].value = index;
+              array[pointer].value = next;
+              var store = array[pointer + 1].order;
+              array[pointer + 1].order = array[pointer].order;
+              array[pointer].order = store;
+          }
+      }
+    if (item.order === undefined) {
+        delete item.order;
+    }
+  }
   return array;
 };
+
+// insertionSort([{value: 2}, {value: 1}, {value: 3}]);
+// insertionSort([{value: 10}, {value: 5, order: 1}, {value: 5, order: 2}]);
