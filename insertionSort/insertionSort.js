@@ -39,7 +39,7 @@ var testingTransform = function(array) {
   var transform = [];
 
   for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], order: i});
+    transform.push({value: array[i], i: i});
   }
 
   return transform;
@@ -57,13 +57,13 @@ var insertionSort = function(array) {
           if (index > next) {
               array[pointer + 1].value = index;
               array[pointer].value = next;
-              var store = array[pointer + 1].order;
-              array[pointer + 1].order = array[pointer].order;
-              array[pointer].order = store;
+              var store = array[pointer + 1].i;
+              array[pointer + 1].i = array[pointer].i;
+              array[pointer].i = store;
           }
       }
-    if (item.order === undefined) {
-        delete item.order;
+    if (item.i === undefined) {
+        delete item.i;
     }
   }
   return array;
