@@ -99,4 +99,13 @@
 
 var mergeSort = function(array) {
   // Your code here.
+  var split = [];
+  // split array into single array slices
+  for (var item of array) {
+    split.push([item]);
+  }
+  console.log(split);
+  // merge two elements in split array
+  // sort those elements
+
 };
