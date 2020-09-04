@@ -94,18 +94,51 @@
  *   Implement natural splitting into your mergesort. How much does it improve your average-case runtime?
  *
  */
-
-
+// merge helper function to combine arrays without having spaghetti code
+var merge = (l, r) => {
+  //declare return array
+  var arr = [];
+  // sort first index of both arrays into proper position
+  while (l.length && r.length) {
+      if (l[0] > r[0]) {
+          arr.push(r.shift());
+      } else {
+          arr.push(l.shift());
+      }
+  }
+  // return the result array
+  return arr.concat(l.slice().concat(r.slice()))
+}
 
 var mergeSort = function(array) {
-  // Your code here.
-  var split = [];
-  // split array into single array slices
-  for (var item of array) {
-    split.push([item]);
+  // base case, if array is one long return
+  if (array.length <= 1) {
+      return array;
   }
-  console.log(split);
-  // merge two elements in split array
-  // sort those elements
+  // split array in half
+  var half = Math.floor(array.length / 2);
+  var left = array.slice(0, half);
+  var right = array.slice(half);
+  // return both sides recursively sorted as well, and merge them
+  return merge(mergeSort(left), mergeSort(right));
+}
 
-};
+//Below is code that I could not get to work. I wanted to try the iterative approach but for some reason recursion works better in my head
+
+// basically I tried doing a hard coded approach before I realized it was hard coded.
+
+// var mergeSort = function(array) {
+//     var sorted = [];
+//     for (var item of array) {
+//         sorted.push([item]);
+//     }
+//     for (var i = 0; i < sorted.length; i+=2) {
+//         if (sorted[i][0] > sorted[i + 1][0]) {
+//             sorted[i + 1].push(sorted[i].pop())
+//         } else {
+//             sorted[i].push(sorted[i + 1].pop())
+//         }
+
+//     }
+//     console.log(sorted);
+// };
