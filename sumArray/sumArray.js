@@ -10,5 +10,28 @@
  */
 
 // Solved in O(n) time with O(1) memory
-var sumArray = function(array) {
+var sumArray = function (array) {
+  var res = 0;
+  var temp = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (res < 0) {
+      res = 0;
+    }
+    temp = res;
+    res += array[i];
+  }
+  if (temp > res) {
+    return temp;
+  }
+
+  return res;
 };
+
+
+console.log('[1, 2, 3] -> 6 ', sumArray([1, 2, 3]))
+
+console.log('[1, 2, 3, -4] -> 6 ', sumArray([1, 2, 3, -4]))
+
+console.log('[10, -11, 11]) -> 11 ', sumArray([10, -11, 11]))
+
+console.log('[1, 2, 3, -4, 5] -> 7 ', sumArray([1, 2, 3, -4, 5]))
