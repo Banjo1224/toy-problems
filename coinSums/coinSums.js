@@ -24,8 +24,26 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-var makeChange = function(total) {
-
+var makeChange = function(change) {
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  var ways = 0;
+  var findChange = function(n, valid) {
+      ways = ways + valid;
+      coins.forEach(coin => {
+          if (n === 0) {
+             ways += 1;
+          }
+          if (n - coin > 0) {
+              var sub = 0;
+              sub = n - coin;
+              findChange(sub, ways);
+          }
+      })
+      return ways;
+  }
+  findChange(change, 0);
+  return ways;
 };
 
 
+console.log(makeChange(11), " --> should be 5")
