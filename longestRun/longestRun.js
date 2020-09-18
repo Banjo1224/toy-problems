@@ -43,6 +43,7 @@ var longestRun = function (string) {
   return [start, end];
 };
 
+
 // If you need a random string generator, use this!
 // (you wont need this function for your solution but it may help with testing)
 var randomString = function (len) {
@@ -57,15 +58,19 @@ var randomString = function (len) {
 };
 
 var testArr = [];
-for (var i = 0; i < 10; i++) {
-  testArr.push(randomString(1000));
+for (var i = 0; i < 1000; i++) {
+  testArr.push(randomString(10000));
 }
-
+var count = 0;
 for (var test of testArr) {
-  console.log(longestRun(test))
+  var temp = longestRun(test);
+  if ( temp[1] - temp[0] > count ){
+    count = temp[1] - temp[0];
+  }
 }
+console.log('Largest count was: ', count)
 
-console.log(longestRun("abbbcc")) // [1, 3]
-console.log(longestRun("aabbc"))  // [0, 1]
-console.log(longestRun("abcd"))   // [0, 0]
-console.log(longestRun(""))       // null
+// console.log(longestRun("abbbcc")) // [1, 3]
+// console.log(longestRun("aabbc"))  // [0, 1]
+// console.log(longestRun("abcd"))   // [0, 0]
+// console.log(longestRun(""))       // null
