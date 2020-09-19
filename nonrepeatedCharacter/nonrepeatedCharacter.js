@@ -7,12 +7,10 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  return (string.length === 0 ? return null : string.length === 1 ? return string : () => {
-    if ( string.length === 0 ) { return null } else if ( string.length === 1 ) { return string; };
-    for ( var i = 1; i < string.length; i++ ) {
-      if ( string[i] !== string[i - 1] ) {
-        return string[i].toString();
-      }
+  if ( string.length === 0 ) { return null } else if ( string.length === 1 ) { return string; };
+  for ( var i = 1; i < string.length; i++ ) {
+    if ( string[i] !== string[i - 1] ) {
+      return string[i].toString();
     }
   }
 };
