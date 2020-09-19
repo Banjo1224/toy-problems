@@ -7,5 +7,16 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  if ( string.length <= 1 ) { return string };
+  for ( var i = 1; i < string.length; i++ ) {
+    if ( string[i] !== string[i - 1] ) {
+      return string [i];
+    }
+  }
 };
+
+console.log(firstNonRepeatedCharacter('A'), '--> A');
+console.log(firstNonRepeatedCharacter('ABA'), '--> B');
+console.log(firstNonRepeatedCharacter('AACBDB'), '--> C');
+console.log(firstNonRepeatedCharacter('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB'), '--> B');
+console.log(firstNonRepeatedCharacter(""), '--> ""');
