@@ -10,7 +10,7 @@ var firstNonRepeatedCharacter = function(string) {
   if ( string.length <= 1 ) { return string };
   for ( var i = 1; i < string.length; i++ ) {
     if ( string[i] !== string[i - 1] ) {
-      return string [i];
+      return string[i].toString();
     }
   }
 };
