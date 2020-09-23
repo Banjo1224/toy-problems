@@ -55,4 +55,45 @@ var numbersToPlace = {
 
 Number.prototype.toEnglish = function () {
   // return my value as english words
+  console.log('Input is: ', this)
+    var recur = (input) => {
+        var place = 0;
+        var placeVal = 0;
+        var temp = 0;
+        var result = "";
+
+        if (numbersToWords[input] && numbersToWords[input] !== 'zero') {
+            result = numbersToWords[input];
+        }
+
+        if (input < 100) {
+            placeVal = Math.floor(input / 10) * 10;
+            temp = input % 10;
+            result = `${numbersToWords[placeVal]}-${numbersToWords[temp]}`
+        } else {
+            if (input < 1000) {
+                place = 100;
+            }
+            else {
+                place = 1000;
+                while (place * 1000 <= input) {
+                    place *= 1000;
+                }
+            }
+
+            placeVal = Math.floor(input / place);
+            temp = input % place;
+            result = `${recur(placeVal)} ${numbersToPlace[place]}`
+            var remainder;
+            remainder = recur(temp);
+            if (remainder !== 'zero') {
+                result += ` ${remainder}`
+            }
+        }
+        return result;
+    }
+    return recur(this);
 };
+
+(575).toEnglish();
+
