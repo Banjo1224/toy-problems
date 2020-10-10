@@ -17,5 +17,27 @@
   */
 
 var validateEmail = function(address) {
+  var str = address.split('');
+  if (str.indexOf('.') === 0 || str[str.length - 1] === '.') {
+    return false;
+  }
+  var atSign = 0
+  str.map(char => { if (char === '@') atSign++;  })
+  if (atSign > 1 || atSign === 0) {
+    return false;
+  }
+  if (str[str.length - 4] !== '.') {
+    return false;
+  }
+  return true;
 };
 
+
+
+console.log(validateEmail('bbates377@gmail.com'), '--> true');
+console.log(validateEmail('.bbates@gmail.com'), '--> false');
+console.log(validateEmail('b.bates@gmail.com'), '--> true');
+console.log(validateEmail('bbates@gmail.com.'), '--> false');
+console.log(validateEmail('bbatesgmail.com'), '--> false');
+console.log(validateEmail('bbates@gmail'), '--> false');
+console.log(validateEmail('bbates@@gmail.com'), '--> false');
