@@ -31,18 +31,78 @@
  */
 
 var LRUCache = function (limit) {
+  this.size = 0;
+  this.limit = limit;
+  this.head = null;
+  this.tail = null;
+  this.cache = {};
 };
 
 var LRUCacheItem = function (val, key) {
+  this.val = val;
+  this.key = key;
+  this.next = null;
+  this.tail = null;
 };
 
 LRUCache.prototype.size = function () {
+  return this.size;
 };
 
 LRUCache.prototype.get = function (key) {
+  if (this.cache[key]) {
+    this.shift(key)
+    return this.cache[key]
+  }
+  return null;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  if (this.cache[key]) {
+    this.shift(key);
+    this.cache[key] = val;
+  } else {
+    var head = new LRUCacheItem(val, key);
+
+    if (this.head === null && this.tail === null) {
+      this.head = head;
+      this.tail = head;
+
+      this.head.next = this.tail;
+      this.tail.prev = this.head;
+    } else {
+      this.head.prev = head;
+      head.next = this.head;
+      this.head = head;
+    }
+    this.length++;
+
+    if (this.length > this.capacity) {
+
+      var tail = this.tail;
+      this.tail = tail.prev;
+      this.length--;
+
+      delete this.cache[tail.key];
+    }
+
+    // set new data
+    this.cache[key] = value;
+  }
+};
+
+LRUCache.prototype.shift = function(key) {
+  if (this.cache[key] && this.cache[key] !== this.head) {
+    var prev = this.cache[key].prev;
+    var next = this.cache[key].next;
+
+    next.next = next;
+    prev.prev = prev;
+
+    this.head.prev = this.cache[key];
+    this.cache[key].next = this.head;
+    this.head = this.cache[key];
+  }
 };
 
 
