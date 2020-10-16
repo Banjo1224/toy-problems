@@ -87,7 +87,7 @@ LRUCache.prototype.set = function (key, val) {
     }
 
     // set new data
-    this.cache[key] = value;
+    this.cache[key] = val;
   }
 };
 
