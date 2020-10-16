@@ -75,13 +75,13 @@ LRUCache.prototype.set = function (key, val) {
       head.next = this.head;
       this.head = head;
     }
-    this.length++;
+    this.size++;
 
-    if (this.length > this.capacity) {
+    if (this.size > this.capacity) {
 
       var tail = this.tail;
       this.tail = tail.prev;
-      this.length--;
+      this.size--;
 
       delete this.cache[tail.key];
     }
