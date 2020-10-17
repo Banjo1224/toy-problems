@@ -68,7 +68,7 @@ Function.prototype.bind = function (context, ...args) {
   var temp = this;
   return function (...boundArgs) {
     args = args.concat(boundArgs)
-    return temp.call(context, args);
+    return temp.apply(context, args);
   }
 };
 
