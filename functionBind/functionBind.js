@@ -5,7 +5,7 @@
  */
 var alice = {
   name: 'alice',
-  shout: function(){
+  shout: function () {
     alert(this.name);
   }
 }
@@ -23,20 +23,21 @@ var alice = {
 *
 */
 
-var bind = function(call, context) {
-  var con = context;
-  var func = call;
+var bind = function (call, context, ...args) {
+  // call = function to call
+  // context = this binding
+  // args = arguments to apply to function
 
-  console.log(func)
-
-  var temp = {};
-
-  Object.assign(temp, con);
-  temp.func = func;
-  console.log(temp);
-
-  return temp.func();
+  return function (...boundArgs) {
+    args = args.concat(boundArgs);
+    return call.apply(context, args)
+  }
 };
+
+var func = function (a, b) { return a + b };
+var boundFunc = bind(func, null, 'foo');
+var result = boundFunc('bar');
+console.log(result === 'foobar'); // true
 
 /*
 * Function.prototype.bind:
@@ -63,10 +64,22 @@ var bind = function(call, context) {
 *
 */
 
-Function.prototype.bind = function(context) {
-  var temp = context;
-  return this.call(temp);
-
+Function.prototype.bind = function (context, ...args) {
+  var temp = this;
+  return function (...boundArgs) {
+    args = args.concat(boundArgs)
+    return temp.call(context, args);
+  }
 };
 
 
+var alice = {
+  name: 'alice',
+  shout: function () {
+    alert(this.name);
+  }
+}
+var boundShout = alice.shout.bind(alice);
+boundShout(); // alerts 'alice'
+boundShout = alice.shout.bind({ name: 'bob' });
+boundShout(); // alerts 'bob'
