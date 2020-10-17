@@ -67,7 +67,7 @@ console.log(result === 'foobar'); // true
 Function.prototype.bind = function (context, ...args) {
   var temp = this;
   return function (...boundArgs) {
-    args = args.concat(boundArgs)
+    args = args.concat(...boundArgs)
     return temp.apply(context, args);
   }
 };
