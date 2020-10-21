@@ -40,16 +40,44 @@
 
 
 var Range = function(start, end, step) {
+  this.start = start;
+  this.end = end;
+  this.step = step === undefined ? 1: step;
 };
 
 Range.prototype.size = function () {
+  if (this.end === undefined) {
+    return this.start
+  } else if (this.step > 1) {
+    return (this.end - this.start)/this.step + 1;
+  }
+
 };
 
 Range.prototype.each = function (callback) {
+
+  if (this.step > 1 || this.end === undefined) {
+    for (var item = this.start; item <= this.end; item += this.step) {
+      callback(item)
+    }
+  }
+
+  if (this.step < 1 || this.end === undefined) {
+
+    for (var item = this.start; item >= this.end; item += this.step) {
+      callback(item)
+    }
+  }
+
 };
 
 Range.prototype.includes = function (val) {
+  var arr = [];
+  // if the value is within range and is divided by this.step it means it is there is range
+
+  return  (val >= this.start && val <= this.end && val % this.step === 0)
 };
 
-var range = new Range(1);
+var range = new Range(1, 40, 3);
 
+console.log(range.size());
