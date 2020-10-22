@@ -29,8 +29,8 @@ var bind = function (call, context, ...args) {
   // args = arguments to apply to function
 
   return function (...boundArgs) {
-    args = args.concat(boundArgs);
-    return call.apply(context, args)
+    var applyArgs = args.concat(boundArgs);
+    return call.apply(context, applyArgs)
   }
 };
 
@@ -67,8 +67,8 @@ console.log(result === 'foobar'); // true
 Function.prototype.bind = function (context, ...args) {
   var temp = this;
   return function (...boundArgs) {
-    args = args.concat(...boundArgs)
-    return temp.apply(context, args);
+    var applyArgs = args.concat(boundArgs)
+    return temp.apply(context, applyArgs);
   }
 };
 
@@ -83,3 +83,13 @@ var boundShout = alice.shout.bind(alice);
 boundShout(); // alerts 'alice'
 boundShout = alice.shout.bind({ name: 'bob' });
 boundShout(); // alerts 'bob'
+
+var func = function func(a, b) {
+  return a + b;
+};
+    var context = null;
+    var boundFunc = bind(func, context, 'wow '); // "bind" 'wow ' => the first argument (a)
+    var result1 = boundFunc('dawg'); // first call to boundFunc with b='dawg'
+    console.log('result1: ', result1);
+    var result2 = boundFunc('man'); // second call to boundFunc with b='man'
+    console.log('result2: ', result2);
