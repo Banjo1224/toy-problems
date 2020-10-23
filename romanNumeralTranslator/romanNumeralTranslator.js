@@ -27,7 +27,30 @@ var DIGIT_VALUES = {
   M: 1000
 };
 
-var translateRomanNumeral = function(romanNumeral) {
+var translateRomanNumeral = function(input) {
 // TODO: Implement me!
+/**
+ * declare result int
+ * if input ! string, => null
+ * iterate over string
+ * convert each letter to number, add to result
+ * IF letter = I, & next ! I or null/undefined, subtract one
+ */
 
+  var res = 0;
+  // if (typeof(input) !== String) return null;
+  input.split('').map(letter => {
+    if (letter === 'I') {
+      if (input[input.indexOf(letter) + 1]) {
+        res--;
+      } else {
+        res++;
+      }
+    } else {
+      res += DIGIT_VALUES[letter];
+    }
+  })
+  return res;
 };
+
+console.log(translateRomanNumeral("IV"));
