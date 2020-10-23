@@ -41,10 +41,16 @@ var translateRomanNumeral = function(input) {
   if (typeof(input) !== 'string') return null;
   input.split('').map(letter => {
     if (letter === 'I') {
-      if (input[input.indexOf(letter) + 1] !== 'I') {
+      if (input[input.indexOf(letter) + 1] !== 'I' && input[input.indexOf(letter) + 1]) {
         res--;
       } else {
         res++;
+      }
+    } else if (letter ==='C') {
+      if (input[input.indexOf(letter) + 1]) {
+        res = res - 100;
+      } else {
+        res = res + 100;
       }
     } else {
       res += DIGIT_VALUES[letter];
@@ -53,5 +59,8 @@ var translateRomanNumeral = function(input) {
   return res;
 };
 
+console.log(translateRomanNumeral("I"));
 console.log(translateRomanNumeral("MMXX"));
+console.log(translateRomanNumeral("VII"));
+console.log(translateRomanNumeral("MCM"));
 console.log(translateRomanNumeral(9));
