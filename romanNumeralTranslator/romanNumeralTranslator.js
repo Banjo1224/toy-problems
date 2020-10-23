@@ -38,7 +38,7 @@ var translateRomanNumeral = function(input) {
  */
 
   var res = 0;
-  if (typeof(input) !== 'String') return null;
+  if (typeof(input) !== 'string') return null;
   input.split('').map(letter => {
     if (letter === 'I') {
       if (input[input.indexOf(letter) + 1] !== 'I') {
@@ -53,4 +53,5 @@ var translateRomanNumeral = function(input) {
   return res;
 };
 
-console.log(translateRomanNumeral(7));
+console.log(translateRomanNumeral("MMXX"));
+console.log(translateRomanNumeral(9));
