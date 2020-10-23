@@ -38,10 +38,10 @@ var translateRomanNumeral = function(input) {
  */
 
   var res = 0;
-  // if (typeof(input) !== String) return null;
+  if (typeof(input) !== 'String') return null;
   input.split('').map(letter => {
     if (letter === 'I') {
-      if (input[input.indexOf(letter) + 1]) {
+      if (input[input.indexOf(letter) + 1] !== 'I') {
         res--;
       } else {
         res++;
@@ -53,4 +53,4 @@ var translateRomanNumeral = function(input) {
   return res;
 };
 
-console.log(translateRomanNumeral("IV"));
+console.log(translateRomanNumeral(7));
