@@ -9,7 +9,7 @@
 *
 */
 
-function reverseNumber(number) {
+function reverseInteger(number) {
   var revNumber = 0;
   while (number > 0) {
     revNumber = (revNumber * 10) + (number % 10);
@@ -17,5 +17,5 @@ function reverseNumber(number) {
   }
   return revNumber;
 }
-console.log(reverseNumber(876));
+console.log(reverseInteger(876));
 
